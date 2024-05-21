@@ -1,0 +1,32 @@
+
+// W3C TR
+@import 'base';
+@import 'extra';
+@import 'light';
+
+// navbar
+@import 'navbar';
+
+// pygmentize
+@import 'pygmentize';
+
+main {
+    margin-top: 80px;
+}
+
+.example {
+    position: relative;
+    max-width: 1000px;
+    margin: 0;
+    
+    .run {
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	height: 32px;
+	width: 32px;
+	background-image: url('../images/play-button.svg');
+	background-size: 32px;
+	opacity: 0.7;
+    }
+}
