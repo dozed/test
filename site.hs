@@ -45,6 +45,18 @@ main = hakyll $ do
 
     match "templates/*" $ compile templateBodyCompiler
 
+    version "redirects" $ createRedirects queryLinks
+
+--------------------------------------------------------------------------------
+-- Stable SPARQL query links
+--------------------------------------------------------------------------------
+
+queryLinks =
+    [
+      ("example-1", "https://github.com/dozed/test/wiki/SPARQL-Queries#creator-types-in-dblp-run"),
+      ("example-2", "https://github.com/dozed/test/wiki/SPARQL-Queries#most-cited-publications-with-title-keyword-dblp-run")
+    ]
+
 --------------------------------------------------------------------------------
 -- Pandoc + pygmentize
 --------------------------------------------------------------------------------
