@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>dblp KG Info - sparql-queries</title>
+        <link rel="stylesheet" type="text/css" href="./css/style.css">
+    </head>
+    <body>
+        <nav class="navbar">
+  <a class="navbar-brand" href="./index.html">dblp KG</a>
+<!--   <div class="navbar-collapse"> -->
+<!--     <ul class="navbar-nav"> -->
+<!--       <li class="nav-item"> -->
+<!-- 	<a class="nav-link active" aria-current="page" href="/sparql-queries.html">SPARQL Example Queries</a> -->
+<!--       </li> -->
+<!--       <li class="nav-item"> -->
+<!-- 	<a class="nav-link"  href="/sparql-setup.html">SPARQL Server Setup</a> -->
+<!--       </li> -->
+<!--     </ul> -->
+<!--   </div> -->
+</nav>
+
+
+        <main>
+            <h1 id="sparql-queries">SPARQL Queries</h1>
+<h2 id="creator-types-in-dblp">Creator types in dblp</h2>
+<div class="example marker">
+<div class="highlight"><pre><span></span><span class="k">PREFIX</span> <span class="nn">dblp</span><span class="p">:</span> <span class="nl">&lt;https://dblp.org/rdf/schema#&gt;</span>
+<span class="k">PREFIX</span> <span class="nn">rdf</span><span class="p">:</span> <span class="nl">&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span>
+<span class="k">SELECT</span> <span class="nv">?type</span> <span class="p">(</span><span class="nf">COUNT</span><span class="p">(</span><span class="nv">?type</span><span class="p">)</span> <span class="k">AS</span> <span class="nv">?count</span><span class="p">)</span> <span class="k">WHERE</span> <span class="p">{</span>
+  <span class="nv">?subject</span> <span class="nn">rdf</span><span class="p">:</span><span class="nt">type</span> <span class="nn">dblp</span><span class="p">:</span><span class="nt">Creator</span> <span class="p">.</span>
+  <span class="nv">?subject</span> <span class="nn">rdf</span><span class="p">:</span><span class="nt">type</span> <span class="nv">?type</span> <span class="p">.</span>
+  <span class="k">FILTER</span><span class="p">(</span> <span class="nv">?type</span> <span class="o">!=</span> <span class="nn">dblp</span><span class="p">:</span><span class="nt">Creator</span> <span class="p">)</span>
+<span class="p">}</span>
+<span class="k">GROUP BY</span> <span class="nv">?type</span>
+<span class="k">ORDER BY</span> <span class="k">DESC</span><span class="p">(</span><span class="nv">?count</span><span class="p">)</span>
+</pre></div>
+
+<p><a class="run" href="https://sparql.dblp.org/t4dF0g" target="_blank"></a></p>
+</div>
+<h2 id="publication-types-in-dblp">Publication types in dblp</h2>
+<div class="example marker">
+<div class="highlight"><pre><span></span><span class="k">PREFIX</span> <span class="nn">dblp</span><span class="p">:</span> <span class="nl">&lt;https://dblp.org/rdf/schema#&gt;</span>
+<span class="k">PREFIX</span> <span class="nn">rdf</span><span class="p">:</span> <span class="nl">&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span>
+<span class="k">SELECT</span> <span class="nv">?type</span> <span class="p">(</span><span class="nf">COUNT</span><span class="p">(</span><span class="nv">?type</span><span class="p">)</span> <span class="k">AS</span> <span class="nv">?count</span><span class="p">)</span> <span class="k">WHERE</span> <span class="p">{</span>
+  <span class="nv">?subject</span> <span class="nn">rdf</span><span class="p">:</span><span class="nt">type</span> <span class="nn">dblp</span><span class="p">:</span><span class="nt">Publication</span> <span class="p">.</span>
+  <span class="nv">?subject</span> <span class="nn">rdf</span><span class="p">:</span><span class="nt">type</span> <span class="nv">?type</span> <span class="p">.</span>
+  <span class="k">FILTER</span><span class="p">(</span> <span class="nv">?type</span> <span class="o">!=</span> <span class="nn">dblp</span><span class="p">:</span><span class="nt">Publication</span> <span class="p">)</span>
+<span class="p">}</span>
+<span class="k">GROUP BY</span> <span class="nv">?type</span>
+<span class="k">ORDER BY</span> <span class="k">DESC</span><span class="p">(</span><span class="nv">?count</span><span class="p">)</span>
+</pre></div>
+
+<p><a class="run" href="https://sparql.dblp.org/tLfR7u" target="_blank"></a></p>
+</div>
+<h2 id="citation-types-in-dblpocc">Citation types in dblp+OCC</h2>
+<div class="example marker">
+<div class="highlight"><pre><span></span><span class="k">PREFIX</span> <span class="nn">cito</span><span class="p">:</span> <span class="nl">&lt;http://purl.org/spar/cito/&gt;</span>
+<span class="k">PREFIX</span> <span class="nn">rdf</span><span class="p">:</span> <span class="nl">&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span>
+<span class="k">SELECT</span> <span class="nv">?type</span> <span class="p">(</span><span class="nf">COUNT</span><span class="p">(</span><span class="nv">?type</span><span class="p">)</span> <span class="k">AS</span> <span class="nv">?count</span><span class="p">)</span> <span class="k">WHERE</span> <span class="p">{</span>
+  <span class="nv">?subject</span> <span class="nn">rdf</span><span class="p">:</span><span class="nt">type</span> <span class="nn">cito</span><span class="p">:</span><span class="nt">Citation</span> <span class="p">.</span>
+  <span class="nv">?subject</span> <span class="nn">rdf</span><span class="p">:</span><span class="nt">type</span> <span class="nv">?type</span> <span class="p">.</span>
+<span class="p">}</span>
+<span class="k">GROUP BY</span> <span class="nv">?type</span>
+<span class="k">ORDER BY</span> <span class="k">DESC</span><span class="p">(</span><span class="nv">?count</span><span class="p">)</span>
+</pre></div>
+
+<p><a class="run" href="https://sparql.dblp.org/1FF7rR" target="_blank"></a></p>
+</div>
+<h2 id="id-schemes-linked-in-dblp">ID schemes linked in dblp</h2>
+<div class="example marker">
+<div class="highlight"><pre><span></span><span class="k">PREFIX</span> <span class="nn">datacite</span><span class="p">:</span> <span class="nl">&lt;http://purl.org/spar/datacite/&gt;</span>
+<span class="k">PREFIX</span> <span class="nn">rdf</span><span class="p">:</span> <span class="nl">&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span>
+<span class="k">SELECT</span> <span class="nv">?scheme</span> <span class="nv">?type</span> <span class="p">(</span><span class="nf">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span> <span class="nv">?id</span><span class="p">)</span> <span class="k">as</span> <span class="nv">?count_scheme</span><span class="p">)</span> <span class="k">WHERE</span> <span class="p">{</span>
+  <span class="nv">?item</span> <span class="nn">datacite</span><span class="p">:</span><span class="nt">hasIdentifier</span> <span class="nv">?id</span> <span class="p">.</span>
+  <span class="nv">?id</span> <span class="nn">datacite</span><span class="p">:</span><span class="nt">usesIdentifierScheme</span> <span class="nv">?scheme</span> <span class="p">.</span>
+  <span class="nv">?id</span> <span class="nn">rdf</span><span class="p">:</span><span class="nt">type</span> <span class="nv">?type</span> <span class="p">.</span>
+  <span class="k">FILTER</span> <span class="p">(</span><span class="nv">?scheme</span> <span class="o">!=</span> <span class="nn">datacite</span><span class="p">:</span><span class="nt">dblp-record</span> <span class="o">&amp;&amp;</span> <span class="nv">?scheme</span> <span class="o">!=</span> <span class="nn">datacite</span><span class="p">:</span><span class="nt">dblp</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="k">GROUP BY</span> <span class="nv">?scheme</span> <span class="nv">?type</span>
+<span class="k">ORDER BY</span> <span class="k">DESC</span><span class="p">(</span><span class="nv">?count_scheme</span><span class="p">)</span>
+<span class="k">LIMIT</span> <span class="mi">10</span>
+</pre></div>
+
+<p><a class="run" href="https://sparql.dblp.org/tSkthy" target="_blank"></a></p>
+</div>
+<h2 id="most-cited-authors-in-dblp">Most cited authors in dblp</h2>
+<div class="example marker">
+<div class="highlight"><pre><span></span><span class="k">PREFIX</span> <span class="nn">dblp</span><span class="p">:</span> <span class="nl">&lt;https://dblp.org/rdf/schema#&gt;</span>
+<span class="k">PREFIX</span> <span class="nn">cito</span><span class="p">:</span> <span class="nl">&lt;http://purl.org/spar/cito/&gt;</span>
+<span class="k">PREFIX</span> <span class="nn">rdfs</span><span class="p">:</span> <span class="nl">&lt;http://www.w3.org/2000/01/rdf-schema#&gt;</span>
+<span class="k">SELECT</span> <span class="nv">?author</span> <span class="nv">?name</span> <span class="p">(</span><span class="nf">SUM</span><span class="p">(</span><span class="nv">?count_cite</span><span class="p">)</span> <span class="k">as</span> <span class="nv">?cites</span><span class="p">)</span> <span class="k">WHERE</span> <span class="p">{</span>
+  <span class="p">{</span> <span class="k">SELECT</span> <span class="nv">?publ</span> <span class="p">(</span><span class="nf">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span> <span class="nv">?cite</span><span class="p">)</span> <span class="k">as</span> <span class="nv">?count_cite</span><span class="p">)</span> <span class="k">WHERE</span> <span class="p">{</span> 
+    <span class="nv">?publ</span> <span class="nn">dblp</span><span class="p">:</span><span class="nt">omid</span> <span class="nv">?omid</span> <span class="p">.</span>
+    <span class="nv">?cite</span> <span class="nn">cito</span><span class="p">:</span><span class="nt">hasCitedEntity</span> <span class="nv">?omid</span> <span class="p">.</span>
+  <span class="p">}</span> <span class="k">GROUP BY</span> <span class="nv">?publ</span> <span class="p">}</span>
+  <span class="nv">?publ</span> <span class="nn">dblp</span><span class="p">:</span><span class="nt">authoredBy</span> <span class="nv">?author</span> <span class="p">.</span>
+  <span class="nv">?author</span> <span class="nn">rdfs</span><span class="p">:</span><span class="nt">label</span> <span class="nv">?name</span> <span class="p">.</span>
+<span class="p">}</span>
+<span class="k">GROUP BY</span> <span class="nv">?author</span> <span class="nv">?name</span>
+<span class="k">ORDER BY</span> <span class="k">DESC</span><span class="p">(</span><span class="nv">?cites</span><span class="p">)</span>
+<span class="k">LIMIT</span> <span class="mi">10</span>
+</pre></div>
+
+<p><a class="run" href="https://sparql.dblp.org/KHGO1Q" target="_blank"></a></p>
+</div>
+<h2 id="most-cited-publications-in-dblp">Most cited publications in dblp</h2>
+<div class="example marker">
+<div class="highlight"><pre><span></span><span class="k">PREFIX</span> <span class="nn">schema</span><span class="p">:</span> <span class="nl">&lt;https://schema.org/&gt;</span>
+<span class="k">PREFIX</span> <span class="nn">dblp</span><span class="p">:</span> <span class="nl">&lt;https://dblp.org/rdf/schema#&gt;</span>
+<span class="k">PREFIX</span> <span class="nn">cito</span><span class="p">:</span> <span class="nl">&lt;http://purl.org/spar/cito/&gt;</span>
+<span class="k">PREFIX</span> <span class="nn">rdf</span><span class="p">:</span> <span class="nl">&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span>
+<span class="k">PREFIX</span> <span class="nn">rdfs</span><span class="p">:</span> <span class="nl">&lt;http://www.w3.org/2000/01/rdf-schema#&gt;</span>
+<span class="k">PREFIX</span> <span class="nn">schema</span><span class="p">:</span> <span class="nl">&lt;https://schema.org/&gt;</span>
+<span class="k">SELECT</span> <span class="nv">?url</span> <span class="nv">?publ</span> <span class="nv">?title</span> <span class="p">(</span><span class="nf">COUNT</span><span class="p">(</span><span class="nv">?citation</span><span class="p">)</span> <span class="k">as</span> <span class="nv">?cites</span><span class="p">)</span> <span class="k">WHERE</span> <span class="p">{</span>
+  <span class="nv">?citation</span> <span class="nn">rdf</span><span class="p">:</span><span class="nt">type</span> <span class="nn">cito</span><span class="p">:</span><span class="nt">Citation</span> <span class="p">.</span>
+  <span class="nv">?citation</span> <span class="nn">cito</span><span class="p">:</span><span class="nt">hasCitedEntity</span> <span class="nv">?omid</span> <span class="p">.</span>
+  <span class="nv">?publ</span> <span class="nn">rdf</span><span class="p">:</span><span class="nt">type</span> <span class="nn">dblp</span><span class="p">:</span><span class="nt">Publication</span> <span class="p">.</span>
+  <span class="nv">?publ</span> <span class="nn">dblp</span><span class="p">:</span><span class="nt">omid</span> <span class="nv">?omid</span> <span class="p">.</span>
+  <span class="nv">?publ</span> <span class="nn">rdfs</span><span class="p">:</span><span class="nt">label</span> <span class="nv">?title</span> <span class="p">.</span>
+  <span class="nv">?omid</span> <span class="nn">schema</span><span class="p">:</span><span class="nt">url</span> <span class="nv">?url</span>
+<span class="p">}</span>
+<span class="k">GROUP BY</span> <span class="nv">?url</span> <span class="nv">?publ</span> <span class="nv">?title</span>
+<span class="k">ORDER BY</span> <span class="k">DESC</span><span class="p">(</span><span class="nv">?cites</span><span class="p">)</span>
+</pre></div>
+
+<p><a class="run" href="https://sparql.dblp.org/ePAtFp" target="_blank"></a></p>
+</div>
+<h2 id="theses-in-dblp-by-school">Theses in dblp by school</h2>
+<div class="example marker">
+<div class="highlight"><pre><span></span><span class="k">PREFIX</span> <span class="nn">dblp</span><span class="p">:</span> <span class="nl">&lt;https://dblp.org/rdf/schema#&gt;</span>
+<span class="k">PREFIX</span> <span class="nn">rdf</span><span class="p">:</span> <span class="nl">&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span>
+<span class="k">SELECT</span> <span class="nv">?school</span> <span class="p">(</span><span class="nf">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span> <span class="nv">?thesis</span><span class="p">)</span> <span class="k">as</span> <span class="nv">?count</span><span class="p">)</span> <span class="k">WHERE</span> <span class="p">{</span>
+  <span class="nv">?thesis</span> <span class="nn">rdf</span><span class="p">:</span><span class="nt">type</span> <span class="nn">dblp</span><span class="p">:</span><span class="nt">Book</span> <span class="p">.</span>
+  <span class="nv">?thesis</span> <span class="nn">dblp</span><span class="p">:</span><span class="nt">thesisAcceptedBySchool</span> <span class="nv">?school</span> <span class="p">.</span>
+<span class="p">}</span>
+<span class="k">GROUP BY</span> <span class="nv">?school</span>
+<span class="k">ORDER BY</span> <span class="k">DESC</span><span class="p">(</span><span class="nv">?count</span><span class="p">)</span>
+</pre></div>
+
+<p><a class="run" href="https://sparql.dblp.org/sXUHeT" target="_blank"></a></p>
+</div>
+<h2 id="journal-impact-factors">Journal Impact Factors in 2019-2023</h2>
+<div class="example marker">
+<div class="highlight"><pre><span></span><span class="k">PREFIX</span> <span class="nn">dblp</span><span class="p">:</span> <span class="nl">&lt;https://dblp.org/rdf/schema#&gt;</span>
+<span class="k">PREFIX</span> <span class="nn">cito</span><span class="p">:</span> <span class="nl">&lt;http://purl.org/spar/cito/&gt;</span>
+<span class="k">PREFIX</span> <span class="nn">rdf</span><span class="p">:</span> <span class="nl">&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span>
+<span class="k">PREFIX</span> <span class="nn">xsd</span><span class="p">:</span> <span class="nl">&lt;http://www.w3.org/2001/XMLSchema#&gt;</span>
+<span class="k">SELECT</span> <span class="nv">?venue</span> <span class="p">(</span><span class="nf">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span> <span class="nv">?publ</span><span class="p">)</span> <span class="k">as</span> <span class="nv">?publs</span><span class="p">)</span> <span class="p">(</span><span class="nf">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span> <span class="nv">?citation</span><span class="p">)</span> <span class="k">as</span> <span class="nv">?cites</span><span class="p">)</span>
+      <span class="p">((</span><span class="nf">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span> <span class="nv">?citation</span><span class="p">)</span><span class="o">/</span><span class="nf">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span> <span class="nv">?publ</span><span class="p">))</span> <span class="k">AS</span> <span class="nv">?impact</span><span class="p">)</span> <span class="k">WHERE</span> <span class="p">{</span>
+  <span class="nv">?publ</span> <span class="nn">rdf</span><span class="p">:</span><span class="nt">type</span> <span class="nn">dblp</span><span class="p">:</span><span class="nt">Article</span> <span class="p">.</span>
+  <span class="nv">?publ</span> <span class="nn">dblp</span><span class="p">:</span><span class="nt">omid</span> <span class="nv">?omid</span> <span class="p">.</span>
+  <span class="nv">?publ</span> <span class="nn">dblp</span><span class="p">:</span><span class="nt">publishedIn</span> <span class="nv">?venue</span> <span class="p">.</span>
+  <span class="nv">?publ</span> <span class="nn">dblp</span><span class="p">:</span><span class="nt">yearOfPublication</span> <span class="nv">?year</span> <span class="p">.</span>
+  <span class="k">FILTER</span><span class="p">(</span><span class="nv">?year</span> <span class="o">&gt;=</span> <span class="s">&quot;2019&quot;</span><span class="o">^^</span><span class="nn">xsd</span><span class="p">:</span><span class="nt">gYear</span><span class="p">)</span> <span class="p">.</span> 
+  <span class="k">OPTIONAL</span> <span class="p">{</span> <span class="nv">?citation</span> <span class="nn">cito</span><span class="p">:</span><span class="nt">hasCitedEntity</span> <span class="nv">?omid</span> <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">GROUP BY</span> <span class="nv">?venue</span>
+<span class="k">ORDER BY</span> <span class="k">DESC</span><span class="p">(</span><span class="nv">?impact</span><span class="p">)</span>
+<span class="k">LIMIT</span> <span class="mi">25</span>
+</pre></div>
+
+<p><a class="run" href="https://sparql.dblp.org/kLl2Pu" target="_blank"></a></p>
+</div>
+<h2 id="most-cited-publications-with-title-keyword-dblp">Most cited publications with title keyword “dblp”</h2>
+<div class="example marker">
+<div class="highlight"><pre><span></span><span class="k">PREFIX</span> <span class="nn">dblp</span><span class="p">:</span> <span class="nl">&lt;https://dblp.org/rdf/schema#&gt;</span>
+<span class="k">PREFIX</span> <span class="nn">cito</span><span class="p">:</span> <span class="nl">&lt;http://purl.org/spar/cito/&gt;</span>
+<span class="k">PREFIX</span> <span class="nn">rdfs</span><span class="p">:</span> <span class="nl">&lt;http://www.w3.org/2000/01/rdf-schema#&gt;</span>
+<span class="k">PREFIX</span> <span class="nn">rdf</span><span class="p">:</span> <span class="nl">&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span>
+<span class="k">PREFIX</span> <span class="nn">schema</span><span class="p">:</span> <span class="nl">&lt;https://schema.org/&gt;</span>
+<span class="k">SELECT</span> <span class="nv">?url</span> <span class="nv">?publ</span> <span class="nv">?label</span> <span class="p">(</span><span class="nf">COUNT</span><span class="p">(</span><span class="nv">?citation</span><span class="p">)</span> <span class="k">as</span> <span class="nv">?cites</span><span class="p">)</span> <span class="k">WHERE</span> <span class="p">{</span>
+  <span class="nv">?publ</span> <span class="nn">rdf</span><span class="p">:</span><span class="nt">type</span> <span class="nn">dblp</span><span class="p">:</span><span class="nt">Publication</span> <span class="p">.</span>
+  <span class="nv">?publ</span> <span class="nn">dblp</span><span class="p">:</span><span class="nt">title</span> <span class="nv">?title</span> <span class="p">.</span>
+  <span class="k">FILTER</span> <span class="nf">CONTAINS</span><span class="p">(</span><span class="nv">?title</span><span class="p">,</span> <span class="s">&quot;dblp&quot;</span><span class="p">)</span> <span class="p">.</span>
+  <span class="nv">?publ</span> <span class="nn">dblp</span><span class="p">:</span><span class="nt">omid</span> <span class="nv">?omid</span> <span class="p">.</span>
+  <span class="nv">?publ</span> <span class="nn">rdfs</span><span class="p">:</span><span class="nt">label</span> <span class="nv">?label</span> <span class="p">.</span>
+  <span class="nv">?citation</span> <span class="nn">rdf</span><span class="p">:</span><span class="nt">type</span> <span class="nn">cito</span><span class="p">:</span><span class="nt">Citation</span> <span class="p">.</span>
+  <span class="nv">?citation</span> <span class="nn">cito</span><span class="p">:</span><span class="nt">hasCitedEntity</span> <span class="nv">?omid</span> <span class="p">.</span>
+  <span class="nv">?omid</span> <span class="nn">schema</span><span class="p">:</span><span class="nt">url</span> <span class="nv">?url</span> <span class="p">.</span>
+<span class="p">}</span>
+<span class="k">GROUP BY</span> <span class="nv">?url</span> <span class="nv">?publ</span> <span class="nv">?label</span>
+<span class="k">ORDER BY</span> <span class="k">DESC</span><span class="p">(</span><span class="nv">?cites</span><span class="p">)</span>
+<span class="k">LIMIT</span> <span class="mi">10</span>
+</pre></div>
+
+<p><a class="run" href="https://sparql.dblp.org/9062it" target="_blank"></a></p>
+</div>
+<h2 id="most-cited-publications-from-dagstuhl-publishing">Most cited publications from Dagstuhl Publishing</h2>
+<div class="example marker">
+<div class="highlight"><pre><span></span><span class="k">PREFIX</span> <span class="nn">dblp</span><span class="p">:</span> <span class="nl">&lt;https://dblp.org/rdf/schema#&gt;</span>
+<span class="k">PREFIX</span> <span class="nn">cito</span><span class="p">:</span> <span class="nl">&lt;http://purl.org/spar/cito/&gt;</span>
+<span class="k">PREFIX</span> <span class="nn">datacite</span><span class="p">:</span> <span class="nl">&lt;http://purl.org/spar/datacite/&gt;</span>
+<span class="k">PREFIX</span> <span class="nn">litre</span><span class="p">:</span> <span class="nl">&lt;http://purl.org/spar/literal/&gt;</span>
+<span class="k">PREFIX</span> <span class="nn">rdfs</span><span class="p">:</span> <span class="nl">&lt;http://www.w3.org/2000/01/rdf-schema#&gt;</span>
+<span class="k">SELECT</span> <span class="nv">?publ</span> <span class="nv">?label</span> <span class="p">(</span><span class="nf">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span> <span class="nv">?cite</span><span class="p">)</span> <span class="k">as</span> <span class="nv">?count_cite</span><span class="p">)</span> <span class="k">WHERE</span> <span class="p">{</span>
+  <span class="nv">?publ</span> <span class="k">a</span> <span class="nn">dblp</span><span class="p">:</span><span class="nt">Publication</span> <span class="p">.</span>
+  <span class="nv">?publ</span> <span class="nn">datacite</span><span class="p">:</span><span class="nt">hasIdentifier</span> <span class="nv">?id</span> <span class="p">.</span>
+  <span class="nv">?id</span> <span class="nn">datacite</span><span class="p">:</span><span class="nt">usesIdentifierScheme</span> <span class="nn">datacite</span><span class="p">:</span><span class="nt">doi</span> <span class="p">.</span>
+  <span class="nv">?id</span> <span class="nn">litre</span><span class="p">:</span><span class="nt">hasLiteralValue</span> <span class="nv">?doistr</span> <span class="p">.</span>
+  <span class="k">FILTER</span> <span class="nf">REGEX</span><span class="p">(</span><span class="nv">?doistr</span><span class="p">,</span><span class="s">&quot;^10.4230/&quot;</span><span class="p">)</span> <span class="p">.</span>
+  <span class="nv">?publ</span> <span class="nn">dblp</span><span class="p">:</span><span class="nt">omid</span> <span class="nv">?omid</span> <span class="p">.</span>
+  <span class="nv">?cite</span> <span class="nn">cito</span><span class="p">:</span><span class="nt">hasCitedEntity</span> <span class="nv">?omid</span> <span class="p">.</span>
+  <span class="nv">?publ</span> <span class="nn">rdfs</span><span class="p">:</span><span class="nt">label</span> <span class="nv">?label</span> <span class="p">.</span>
+<span class="p">}</span>
+<span class="k">GROUP BY</span> <span class="nv">?publ</span> <span class="nv">?label</span>
+<span class="k">ORDER BY</span> <span class="k">DESC</span><span class="p">(</span><span class="nv">?count_cite</span><span class="p">)</span>
+<span class="k">LIMIT</span> <span class="mi">10</span>
+</pre></div>
+
+<p><a class="run" href="https://sparql.dblp.org/RztfOs" target="_blank"></a></p>
+</div>
+        </main>
+    </body>
+</html>
