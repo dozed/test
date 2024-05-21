@@ -53,8 +53,8 @@ main = hakyll $ do
 
 queryLinks =
     [
-      ("example-1", "https://github.com/dozed/test/wiki/SPARQL-Queries#creator-types-in-dblp-run"),
-      ("example-2", "https://github.com/dozed/test/wiki/SPARQL-Queries#most-cited-publications-with-title-keyword-dblp-run")
+      ("example-1.html", "https://github.com/dozed/test/wiki/SPARQL-Queries#creator-types-in-dblp-run"),
+      ("example-2.html", "https://github.com/dozed/test/wiki/SPARQL-Queries#most-cited-publications-with-title-keyword-dblp-run")
     ]
 
 --------------------------------------------------------------------------------
