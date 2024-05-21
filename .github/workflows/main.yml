@@ -79,7 +79,7 @@ jobs:
         run: |
             git config user.name github-actions
             git config user.email github-actions@github.com
-            git checkout main
+            git checkout pages
             git pull --rebase
             # Overwrite existing files with new files
             cp -a -v _site/. .
@@ -87,4 +87,4 @@ jobs:
             git add --all
             git commit --allow-empty -m "[`date '+%F %T %Z'`] New release"
             # Push
-            git push origin main:main
+            git push origin pages:pages
