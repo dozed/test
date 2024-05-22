@@ -18,7 +18,7 @@ newtype IconSize = IconSize Int
 instance Show IconSize where
   show (IconSize s) = show s
 
-data IconType = Basic !IconSize | Ico ![IconSize] | IOS !IconSize
+data IconType = Basic IconSize | Ico [IconSize] | IOS IconSize
 
 data Favicon = Favicon IconType
 
