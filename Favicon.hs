@@ -87,7 +87,7 @@ processIco favicon sizes = version ("ico-" ++ concat (intersperse "-" (show <$> 
     args =
       [ "-background"
       , "none"
-      , "svg:-"
+      , "-"
       , "-define"
       , concat ["icon:auto-resize=", concat (intersperse "," (show <$> sizes))]
       , "+repage"
@@ -103,7 +103,7 @@ processPng favicon (IconSize size) = version ("png" ++ show size) $ do
     args =
       [ "-background"
       , "none"
-      , "svg:-"
+      , "-"
       , "-resize"
       , concat [show size, "x", show size, "!"]
       , "+repage"
