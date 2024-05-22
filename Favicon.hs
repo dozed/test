@@ -18,7 +18,7 @@ newtype IconSize = IconSize Int
 instance Show IconSize where
   show (IconSize s) = show s
 
-data IconType = Basic IconSize | Ico [IconSize] | IOS IconSize
+data IconType = Basic !IconSize | Ico ![IconSize] | IOS !IconSize
 
 data Favicon = Favicon IconType
 
@@ -87,7 +87,7 @@ processIco favicon sizes = version ("ico-" ++ concat (intersperse "-" (show <$> 
     args =
       [ "-background"
       , "none"
-      , "-"
+      , "svg:-"
       , "-define"
       , concat ["icon:auto-resize=", concat (intersperse "," (show <$> sizes))]
       , "+repage"
@@ -103,7 +103,7 @@ processPng favicon (IconSize size) = version ("png" ++ show size) $ do
     args =
       [ "-background"
       , "none"
-      , "-"
+      , "svg:-"
       , "-resize"
       , concat [show size, "x", show size, "!"]
       , "+repage"
