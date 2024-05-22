@@ -1,0 +1,24 @@
+
+footer {
+    display: flex;
+    align-items: center;
+    padding: 40px 20px 20px 20px;
+
+    .utr-logo {
+        display: block;
+        width: 127px;
+        height: 32px;
+        margin-left: auto;
+        background: url(../images/utr-logo-bottom.png) no-repeat;
+        background-size: 127px 32px;
+    }
+
+    .lzi-logo {
+        display: block;
+        width: 235px;
+        height: 50px;
+        margin-left: 20px;
+        background: url(../images/lzi-logo-bottom.png) no-repeat;
+        background-size: 235px 50px;
+    }
+}

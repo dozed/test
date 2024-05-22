@@ -1,17 +1,32 @@
 
 // W3C TR
 @import 'base';
-@import 'extra';
-@import 'light';
+// @import 'extra';
+// @import 'light';
 
-// navbar
 @import 'navbar';
-
-// pygmentize
+@import 'footer';
 @import 'pygmentize';
 
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+}
+
 main {
-    margin-top: 80px;
+    padding: 80px 30px;
+    flex: 1 0 auto;
+}
+
+.dblp-kg {
+    background-image: url('../images/dblp-kg.png');
+    background-size: contain;
+    background-repeat: none;
+    width: 557px;
+    height: 133px;
 }
 
 .example {
@@ -30,3 +45,4 @@ main {
 	opacity: 0.7;
     }
 }
+

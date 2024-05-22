@@ -84,5 +84,6 @@ pygmentsHighlight = walkM \case
 sass :: Compiler (Item String)
 sass =
     getResourceString
-        >>= withItemBody (unixFilter "sass" ["-s", "compressed", "--stdin", "--load-path=./css"])
+        -- >>= withItemBody (unixFilter "sass" ["-s", "compressed", "--stdin", "--load-path=./css"])
+        >>= withItemBody (unixFilter "sass" ["--stdin", "--style=expanded", "--load-path=./css"])
         >>= return . fmap compressCss
