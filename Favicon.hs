@@ -5,11 +5,10 @@ module Favicon
 
 -- Adapted from: https://github.com/elaye/hakyll-favicon
 
-import Data.Monoid ((<>))
 import Data.List (intersperse)
 
 import Hakyll
-import System.FilePath (takeExtension, (</>))
+import System.FilePath ((</>))
 
 import Debug.Trace (traceShow)
 
