@@ -2,6 +2,8 @@
 
 # Welcome
 
+<img src="dblp-kg.png" width="557px" />
+
 - [Wiki](https://github.com/dozed/test/wiki)
   - [SPARQL Example Queries](https://github.com/dozed/test/wiki/SPARQL-Queries)
   - [SPARQL Server Setup](https://github.com/dozed/test/wiki/SPARQL-Server-Setup)
