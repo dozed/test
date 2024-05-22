@@ -5,8 +5,8 @@
 
 import Data.Maybe (fromMaybe, listToMaybe)
 import qualified Data.Text as T
+import Favicon (faviconsField, faviconsRules)
 import Hakyll
-import Favicon (faviconsRules, faviconsField)
 import System.FilePath (takeBaseName)
 import System.Process (readProcess)
 import Text.Pandoc.Definition (Block (CodeBlock, RawBlock), Pandoc)
@@ -20,7 +20,7 @@ import Text.Pandoc.Walk (walk, walkM)
 main :: IO ()
 main = hakyll $ do
     faviconsRules "icon_dblp.svg"
-  
+
     match "images/*" $ do
         route idRoute
         compile copyFileCompiler
@@ -55,9 +55,8 @@ main = hakyll $ do
 --------------------------------------------------------------------------------
 
 queryLinks =
-    [
-      ("example-1.html", "https://github.com/dozed/test/wiki/SPARQL-Queries#creator-types-in-dblp-run"),
-      ("example-2.html", "https://github.com/dozed/test/wiki/SPARQL-Queries#most-cited-publications-with-title-keyword-dblp-run")
+    [ ("example-1.html", "https://github.com/dozed/test/wiki/SPARQL-Queries#creator-types-in-dblp-run")
+    , ("example-2.html", "https://github.com/dozed/test/wiki/SPARQL-Queries#most-cited-publications-with-title-keyword-dblp-run")
     ]
 
 --------------------------------------------------------------------------------
