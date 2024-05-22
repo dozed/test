@@ -32,6 +32,10 @@ main = hakyll $ do
         route idRoute
         compile copyFileCompiler
 
+    match "favicon.ico" $ do
+        route idRoute
+        compile copyFileCompiler
+
     match "*.md" $ do
         route $ setExtension "html"
         compile $ do
