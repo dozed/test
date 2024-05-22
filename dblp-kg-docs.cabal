@@ -5,6 +5,7 @@ cabal-version:      >= 1.10
 
 executable site
   main-is:          site.hs
+  other-modules:    Favicon
   build-depends:    base == 4.*
                   , filepath
                   , hakyll == 4.16.*

@@ -6,6 +6,7 @@
 import Data.Maybe (fromMaybe, listToMaybe)
 import qualified Data.Text as T
 import Hakyll
+import Favicon (faviconsRules, faviconsField)
 import System.FilePath (takeBaseName)
 import System.Process (readProcess)
 import Text.Pandoc.Definition (Block (CodeBlock, RawBlock), Pandoc)
@@ -18,6 +19,8 @@ import Text.Pandoc.Walk (walk, walkM)
 
 main :: IO ()
 main = hakyll $ do
+    faviconsRules "icon_dblp.svg"
+  
     match "images/*" $ do
         route idRoute
         compile copyFileCompiler
@@ -32,16 +35,12 @@ main = hakyll $ do
         route idRoute
         compile copyFileCompiler
 
-    match "favicon.ico" $ do
-        route idRoute
-        compile copyFileCompiler
-
     match "*.md" $ do
         route $ setExtension "html"
         compile $ do
             pageName <- takeBaseName . toFilePath <$> getUnderlying
             let pageKey = "page-" <> pageName
-            let pageContext = constField pageKey "" <> defaultContext
+            let pageContext = constField pageKey "" <> faviconsField <> defaultContext
 
             customPandocCompiler
                 >>= loadAndApplyTemplate "templates/default.html" pageContext
