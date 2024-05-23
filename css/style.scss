@@ -37,6 +37,10 @@ main {
     background-image: url('../images/dblp-kg-2b.png');
 }
 
+li img {
+    vertical-align: text-bottom;
+}
+
 .example {
     position: relative;
     max-width: 1000px;
