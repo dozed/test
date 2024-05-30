@@ -6,6 +6,7 @@
 # Welcome
 
 - [SPARQL Endpoint](https://sparql.dblp.org)
+- [Schema Docs](https://42dots.de/owldoc-new.html)
 - [Wiki](https://github.com/dozed/test/wiki)
   - [SPARQL Example Queries](https://github.com/dozed/test/wiki/SPARQL-Queries)
   - [SPARQL Server Setup](https://github.com/dozed/test/wiki/SPARQL-Server-Setup)
