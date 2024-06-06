@@ -88,7 +88,7 @@ jobs:
             git pull --rebase
             # Remove old files
             ls --hide=_site | xargs -d "\n" rm -rf
-            # Overwrite existing files with new files
+            # Copy generated files
             cp -a -v _site/. .
             #  Commit
             git add --all
