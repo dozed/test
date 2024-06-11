@@ -86,7 +86,9 @@ jobs:
             git config user.email github-actions@github.com
             git checkout pages
             git pull --rebase
-            # Overwrite existing files with new files
+            # Remove old files
+            ls --hide=_site | xargs -d "\n" rm -rf
+            # Copy generated files
             cp -a -v _site/. .
             #  Commit
             git add --all
