@@ -1,8 +1,3 @@
-
-
-<div class="dblp-kg"></div>
-
-
 # Welcome
 
 - [SPARQL Endpoint](https://sparql.dblp.org)

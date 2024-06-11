@@ -9,14 +9,12 @@
         $favicons$
     </head>
     <body>
-        $partial("templates/nav.html")$
-
         <main>
-            $body$
+            $partial("templates/header.html")$
+            <div class="content">
+                $body$
+            </div>
+            $partial("templates/footer.html")$
         </main>
-        <footer>
-            <a class="utr-logo" href="http://www.uni-trier.de/?L=2" target="_blank" rel="noreferrer" title="Universtät Trier"></a>
-            <a class="lzi-logo" href="http://www.dagstuhl.de/en/" target="_blank" rel="noreferrer" title="LZI Schloss Dagstuhl"></a>
-        </footer>
     </body>
 </html>

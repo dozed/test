@@ -1,32 +1,41 @@
 
 // W3C TR
-@import 'base';
+// @import 'base';
 // @import 'extra';
 // @import 'light';
+// @import 'navbar';
 
-@import 'navbar';
+@import 'header';
+@import 'content';
 @import 'footer';
 @import 'pygmentize';
 
 body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-    padding: 0;
-    margin: 0;
+    color: #505b62;
+    background: #cccccc;
+    font-weight: 400;
+    font-size: 11pt;
+    font-family: 'Open Sans', sans-serif;
+    margin: 0px;
 }
 
 main {
-    padding: 80px 30px;
-    flex: 1 0 auto;
+    position: relative;
+    min-width: 500px;
+    max-width: 1150px;
+    background: #ffffff;
+    margin: 0px auto;
+    padding: 10px 2em;
 }
 
-.dblp-kg {
-    background-image: url('../images/dblp-kg.png');
-    background-size: contain;
-    background-repeat: none;
-    width: 557px;
-    height: 133px;
+a {
+    color: #7d848a;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #1889c4;
+    text-decoration: underline;
 }
 
 li img {
